@@ -13,9 +13,27 @@ dbscan_model = joblib.load(os.path.join(model_dir, 'Models/dbscan.pkl'))
 scaler = joblib.load(os.path.join(model_dir, 'Models/scaler.pkl'))
 
 class PredictionRequest(BaseModel):
-    Score: float
-    Price_Range_encoded: int
-    Category_encoded: int
+     Rating: float
+    Rating_count: int
+    Fiction: int
+    Fantasy: int
+    Young_Adult: int
+    Classics: int
+    Historical: int
+    Romance: int
+    Science_Fiction: int
+    Adventure: int
+    Nonfiction: int
+    Contemporary: int
+    Mystery: int
+    Thriller: int
+    Memoir: int
+    Biography: int
+    Horror: int
+    Self_Help: int
+    Graphic_Novels: int
+    Short_Stories: int
+    Science: int
 
 @app.post("/predict/kmeans")
 async def predict_kmeans(data: PredictionRequest):
