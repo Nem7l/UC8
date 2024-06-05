@@ -6,7 +6,7 @@ import os
 
 app = FastAPI()
 
-# Load your model
+# Load your models
 model_dir = os.path.dirname(__file__)
 kmeans_model = joblib.load(os.path.join(model_dir, 'Models/kmeans.pkl'))
 dbscan_model = joblib.load(os.path.join(model_dir, 'Models/dbscan.pkl'))
@@ -34,6 +34,10 @@ class PredictionRequest(BaseModel):
     Graphic_Novels: int
     Short_Stories: int
     Science: int
+
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to the book genre clustering API"}
 
 @app.post("/predict/kmeans")
 async def predict_kmeans(data: PredictionRequest):
