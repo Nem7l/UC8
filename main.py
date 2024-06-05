@@ -13,7 +13,7 @@ dbscan_model = joblib.load(os.path.join(model_dir, 'Models/dbscan.pkl'))
 scaler = joblib.load(os.path.join(model_dir, 'Models/scaler.pkl'))
 
 class PredictionRequest(BaseModel):
-     Rating: float
+    Rating: float
     Rating_count: int
     Fiction: int
     Fantasy: int
