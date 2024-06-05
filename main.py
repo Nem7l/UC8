@@ -6,12 +6,12 @@ import os
 
 app = FastAPI()
 
-# Load your models
-model_dir = os.path.dirname(__file__)
-kmeans_model = joblib.load(os.path.join(model_dir, 'Models/kmeans.pkl'))
-dbscan_model = joblib.load(os.path.join(model_dir, 'Models/dbscan.pkl'))
-scaler = joblib.load(os.path.join(model_dir, 'Models/scaler.pkl'))
-
+def load_models():
+    model_dir = os.path.dirname(__file__)
+    kmeans_model = joblib.load(os.path.join(model_dir, 'Models/kmeans.pkl'))
+    dbscan_model = joblib.load(os.path.join(model_dir, 'Models/dbscan.pkl'))
+    scaler = joblib.load(os.path.join(model_dir, 'Models/scaler.pkl'))
+    return kmeans_model, dbscan_model, scaler
 class PredictionRequest(BaseModel):
     Rating: float
     Rating_count: int
@@ -57,3 +57,5 @@ async def predict_dbscan(data: PredictionRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
